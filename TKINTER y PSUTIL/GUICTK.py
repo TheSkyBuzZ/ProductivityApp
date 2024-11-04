@@ -4,6 +4,9 @@
 import customtkinter as ctk
 from tkinter import *
 
+# Funciones propias en psutil_functions
+from psutil_functions import inicio_app #Funcion de mostrar procesos
+
 # Inicialización de `CustomTkinter` y configuración de tema y color principal
 ctk.set_appearance_mode("dark")  # Opción de apariencia "light", "dark", o "system"
 ctk.set_default_color_theme("blue")  # Tema de color base para la aplicación
@@ -39,14 +42,21 @@ def paneles():
         limpiar_panel_2()
         focus_label = ctk.CTkLabel(panel_2, text="Modo Focus", text_color="white", font=("Roboto", 16))
         focus_label.pack(pady=10)
-        lista_procesos = ctk.CTkTextbox(panel_2, width=400, height=200)
+
+        # Imprimir procesos en una lista visible para el usuario.
+        lista_procesos = ctk.CTkLabel(panel_2, width=400, height=200, text_color="white", font=("Roboto", 10))
         lista_procesos.pack(pady=10)
-        tiempo_label = ctk.CTkLabel(panel_2, text="Duración de sesión (min):", text_color="white")
-        tiempo_label.pack()
-        tiempo_entry = ctk.CTkEntry(panel_2, width=200)
-        tiempo_entry.pack(pady=5)
+        lista_procesos.configure(text=inicio_app())
+
+
+        proceso_label = ctk.CTkLabel(panel_2, text="Ingresa el proceso.", text_color="white")
+        proceso_label.pack()
+        proceso_entry = ctk.CTkEntry(panel_2, width=200)
+        proceso_entry.pack(pady=5)
         iniciar_button = ctk.CTkButton(panel_2, text="Iniciar Modo Focus")
         iniciar_button.pack(pady=10)
+
+        
 
     def Graficos_section():
         limpiar_panel_2()
